@@ -1,0 +1,117 @@
+// ─── Design Tokens ────────────────────────────────────────────────────────────
+$bg-footer:    #0f1a36;        // 짙은 네이비 — Contact의 warm bg 대비
+$text-dim:     rgba(255, 255, 255, 0.45);
+$text-light:   rgba(255, 255, 255, 0.75);
+$text-logo:    rgba(255, 255, 255, 0.92);
+$border:       rgba(255, 255, 255, 0.1);
+
+$font-display: 'Playfair Display', 'Noto Serif KR', serif;
+$font-body:    'DM Sans', 'Pretendard', sans-serif;
+
+$footer-pad-v: clamp(48px, 6vw, 72px);
+$footer-pad-h: clamp(24px, 6vw, 80px);
+
+// ─── Footer Root ──────────────────────────────────────────────────────────────
+.footer {
+  width: 100%;
+  background-color: $bg-footer;
+  padding: $footer-pad-v $footer-pad-h;
+}
+
+// ─── Inner Container ──────────────────────────────────────────────────────────
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+// ─── Top Row ──────────────────────────────────────────────────────────────────
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+.logo {
+  font-family: $font-display;
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: $text-logo;
+}
+
+// ─── Nav ──────────────────────────────────────────────────────────────────────
+.nav {
+  display: flex;
+  gap: 32px;
+
+  @media (max-width: 480px) {
+    gap: 24px;
+  }
+}
+
+.navLink {
+  font-family: $font-body;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $text-dim;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $text-light;
+  }
+}
+
+// ─── Divider ─────────────────────────────────────────────────────────────────
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: $border;
+  margin-bottom: 28px;
+}
+
+// ─── Bottom Row ───────────────────────────────────────────────────────────────
+.bottomRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+.bizInfo {
+  font-family: $font-body;
+  font-size: 0.75rem;
+  color: $text-dim;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.copyright {
+  font-family: $font-body;
+  font-size: 0.75rem;
+  color: $text-dim;
+  margin: 0;
+  white-space: nowrap;
+
+  @media (max-width: 600px) {
+    white-space: normal;
+  }
+}

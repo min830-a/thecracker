@@ -1,0 +1,272 @@
+// ─── Design Tokens ────────────────────────────────────────────────────────────
+$white: #ffffff;
+$bg-warm: #f8f7f3;
+$point-blue: #1a2a5c;
+$text-primary: #111111;
+$text-body: #333333;
+$text-muted: #6b7280;
+$border: #e5e7eb;
+$placeholder: #e5e7eb;
+
+$section-pad-v: clamp(80px, 10vw, 140px);
+$section-pad-h: clamp(24px, 6vw, 80px);
+
+$font-display: "Playfair Display", "Noto Serif KR", serif;
+$font-body: "DM Sans", "Pretendard", sans-serif;
+
+// ─── Section Root ─────────────────────────────────────────────────────────────
+.about {
+  width: 100%;
+  background-color: $white;
+  overflow: hidden;
+}
+
+// ─── Shared Utility ───────────────────────────────────────────────────────────
+.sectionLabel {
+  display: inline-block;
+  font-family: $font-body;
+  font-size: 0.6875rem; // 11px
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: $point-blue;
+  margin-bottom: 28px;
+}
+
+// ─── 1. Intro ─────────────────────────────────────────────────────────────────
+.introWrapper {
+  padding: $section-pad-v $section-pad-h;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.introInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.introText {
+  font-family: $font-display;
+  font-size: clamp(1.5rem, 3vw, 2.25rem); // 24px → 36px
+  font-weight: 400;
+  line-height: 1.65;
+  color: $text-primary;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.accent {
+  font-style: normal;
+  color: $point-blue;
+  border-bottom: 1.5px solid currentColor;
+  padding-bottom: 1px;
+}
+
+.introDivider {
+  margin-top: 60px;
+  width: 48px;
+  height: 1px;
+  background-color: $point-blue;
+  opacity: 0.5;
+}
+
+// ─── 2. Vision ────────────────────────────────────────────────────────────────
+.visionWrapper {
+  padding: $section-pad-v $section-pad-h;
+  padding-top: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.visionHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 56px;
+
+  .sectionLabel {
+    margin-bottom: 16px;
+  }
+}
+
+.visionTitle {
+  font-family: $font-display;
+  font-size: clamp(1.25rem, 2.5vw, 1.875rem); // 20px → 30px
+  font-weight: 400;
+  color: $text-primary;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+.visionGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+.visionCard {
+  padding: 48px 40px;
+  background-color: $white;
+  border: 1px solid $border;
+  cursor: default;
+  transition:
+    background-color 0.35s ease,
+    border-color 0.35s ease;
+
+  &:hover {
+    background-color: $point-blue;
+    border-color: $point-blue;
+
+    .cardIndex,
+    .cardTitle,
+    .cardDesc {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .cardDivider {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 40px 28px;
+    border-left: none;
+    border-right: none;
+
+    &:not(:last-child) {
+      border-bottom: none;
+    }
+  }
+}
+
+.cardIndex {
+  font-family: $font-body;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: $text-muted;
+  transition: color 0.35s ease;
+}
+
+.cardDivider {
+  width: 32px;
+  height: 1px;
+  background-color: $border;
+  margin: 24px 0;
+  transition: background-color 0.35s ease;
+}
+
+.cardTitle {
+  font-family: $font-display;
+  font-size: clamp(1.125rem, 1.8vw, 1.375rem); // 18px → 22px
+  font-weight: 400;
+  color: $text-primary;
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+  transition: color 0.35s ease;
+}
+
+.cardDesc {
+  font-family: $font-body;
+  font-size: 0.9375rem; // 15px
+  line-height: 1.75;
+  color: $text-muted;
+  margin: 0;
+  word-break: keep-all;
+  transition: color 0.35s ease;
+}
+
+// ─── 3. Strength ──────────────────────────────────────────────────────────────
+.strengthWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $section-pad-v $section-pad-h;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+// Image Placeholder Container
+// ────────────────────────────
+// When replacing with a real image:
+//   1. Remove .imagePlaceholder and .placeholderLabel
+//   2. Add <Image> / <img> inside .strengthImageContainer
+//   3. Keep .strengthImageContainer for border-radius and overflow
+.strengthImageContainer {
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: $placeholder;
+}
+
+.imagePlaceholder {
+  // 4:3 aspect ratio via padding trick — remove when using real image
+  position: relative;
+  width: 100%;
+  padding-top: 75%;
+  background-image: url("/images/factory.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.placeholderLabel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: $font-body;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #b0b7c3;
+  pointer-events: none;
+  user-select: none;
+}
+
+// Strength Text Block
+.strengthText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.strengthHeading {
+  font-family: $font-display;
+  font-size: clamp(2rem, 4vw, 3rem); // 32px → 48px
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: $text-primary;
+  margin: 0 0 32px;
+}
+
+.strengthDesc {
+  font-family: $font-body;
+  font-size: clamp(0.9375rem, 1.2vw, 1rem); // 15px → 16px
+  line-height: 1.85;
+  color: $text-body;
+  margin: 0;
+  word-break: keep-all;
+  max-width: 420px;
+
+  @media (max-width: 900px) {
+    max-width: 100%;
+  }
+}

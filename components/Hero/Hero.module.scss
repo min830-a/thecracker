@@ -1,0 +1,285 @@
+// ─── Design Tokens ────────────────────────────────────────────────────────────
+$white: #ffffff;
+$point-blue: #1a2a5c;
+$placeholder-bg: #1c2438; // 이미지 없을 때 배경색
+
+$font-display: "Playfair Display", "Noto Serif KR", serif;
+$font-body: "DM Sans", "Pretendard", sans-serif;
+
+$header-h: 68px; // Header 높이와 맞춤
+
+// ─── Hero Root ────────────────────────────────────────────────────────────────
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100svh; // 모바일 주소창 대응
+  min-height: 600px;
+  overflow: hidden;
+  background-color: $placeholder-bg;
+}
+
+// ─── 1. Background Layer ──────────────────────────────────────────────────────
+.bgLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+// 각 슬라이드 프레임
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform; // GPU 레이어 승격
+  background-color: $placeholder-bg;
+}
+
+// 그라디언트 오버레이
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.58) 0%,
+    rgba(0, 0, 0, 0.42) 26%,
+    rgba(0, 0, 0, 0.22) 42%,
+    rgba(0, 0, 0, 0.08) 58%,
+    rgba(0, 0, 0, 0) 74%
+  );
+}
+
+// next/image fill
+.bgImage {
+  z-index: 0;
+}
+
+// ─── 2. Content Layer ─────────────────────────────────────────────────────────
+.contentLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  padding-top: $header-h;
+  pointer-events: none;
+}
+
+.contentInner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 6vw, 80px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: auto;
+}
+
+// Eyebrow label
+.eyebrow {
+  display: inline-block;
+  font-family: $font-body;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba($white, 0.7);
+  margin-bottom: 24px;
+}
+
+// Main heading
+.heading {
+  font-family: $font-display;
+  font-size: clamp(2.75rem, 7vw, 5.5rem);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: $white;
+  margin: 0 0 28px;
+}
+
+.headingAccent {
+  font-style: normal;
+  color: rgba($white, 0.92);
+  border-bottom: 2px solid $white;
+  padding-bottom: 4px;
+}
+
+// Sub text
+.sub {
+  font-family: $font-body;
+  font-size: clamp(0.875rem, 1.4vw, 1.0625rem);
+  line-height: 1.7;
+  color: rgba($white, 0.72);
+  margin: 0 0 44px;
+  letter-spacing: 0.01em;
+  word-break: keep-all;
+}
+
+// CTA button
+.cta {
+  display: inline-flex;
+  align-items: center;
+  font-family: $font-body;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: $white;
+  border: 1px solid rgba($white, 0.55);
+  padding: 16px 40px;
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+  background-color: rgba($white, 0.06);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($white, 0.14);
+    border-color: rgba($white, 0.85);
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+// ─── 3. Arrow Controls ────────────────────────────────────────────────────────
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba($white, 0.08);
+  border: 1px solid rgba($white, 0.2);
+  border-radius: 50%;
+  color: $white;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition:
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    transform 0.25s ease;
+
+  &:hover {
+    background-color: rgba($white, 0.2);
+    border-color: rgba($white, 0.5);
+  }
+
+  &.arrowPrev:hover {
+    transform: translateY(-50%) translateX(-3px);
+  }
+
+  &.arrowNext:hover {
+    transform: translateY(-50%) translateX(3px);
+  }
+
+  @media (max-width: 480px) {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+.arrowPrev {
+  left: clamp(16px, 3vw, 40px);
+}
+
+.arrowNext {
+  right: clamp(16px, 3vw, 40px);
+}
+
+// ─── 4. Dot / Bar Indicators ─────────────────────────────────────────────────
+.dotsWrapper {
+  position: absolute;
+  bottom: clamp(28px, 4vw, 48px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+// Bar-style dot
+.dot {
+  position: relative;
+  width: 32px;
+  height: 2px;
+  background-color: rgba($white, 0.3);
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  padding: 0;
+  transition:
+    width 0.3s ease,
+    background-color 0.3s ease;
+
+  &.dotActive {
+    width: 52px;
+    background-color: rgba($white, 0.25);
+  }
+
+  &:hover:not(.dotActive) {
+    background-color: rgba($white, 0.55);
+  }
+}
+
+// 진행 bar (active dot 위에 오버레이)
+.dotProgress {
+  position: absolute;
+  inset: 0;
+  background-color: $white;
+  transform-origin: left center;
+  border-radius: 2px;
+}
+
+// ─── 5. Slide Counter ─────────────────────────────────────────────────────────
+.counter {
+  position: absolute;
+  bottom: clamp(28px, 4vw, 48px);
+  right: clamp(20px, 4vw, 48px);
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: $font-body;
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  color: rgba($white, 0.6);
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.counterCurrent {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $white;
+}
+
+.counterSep {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background-color: rgba($white, 0.4);
+}
+
+.counterTotal {
+  font-size: 0.6875rem;
+  color: rgba($white, 0.5);
+}

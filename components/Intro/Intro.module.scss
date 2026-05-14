@@ -1,0 +1,133 @@
+$point-blue: #1a2a5c; // 브랜드 포인트
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $point-blue;
+  overflow: hidden;
+  opacity: 1;
+  transition:
+    opacity 0.7s ease,
+    visibility 0.7s ease;
+}
+
+.closing {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.logoWrap {
+  width: clamp(96px, 12vw, 180px);
+  height: clamp(96px, 12vw, 180px);
+  margin-bottom: 28px;
+  opacity: 0;
+  transform: translateY(18px) scale(0.94);
+  filter: blur(8px);
+  animation: logoReveal 1.35s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@keyframes logoReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.94);
+    filter: blur(8px);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.015);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+.eyebrow {
+  margin-bottom: 18px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: textIn 0.7s ease forwards;
+  animation-delay: 0.85s;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(2.4rem, 6vw, 5.4rem);
+  font-weight: 700;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #111111;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: textIn 0.8s ease forwards;
+  animation-delay: 1.1s;
+}
+
+.sub {
+  margin-top: 28px;
+  font-size: clamp(0.8125rem, 1vw, 1rem);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: #6a645e;
+  opacity: 0;
+  transform: translateY(12px);
+  animation: textIn 0.7s ease forwards;
+  animation-delay: 1.45s;
+}
+
+.skip {
+  position: absolute;
+  right: 28px;
+  bottom: 24px;
+  border: 0;
+  background: transparent;
+  color: rgba(17, 17, 17, 0.42);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.25s ease;
+
+  &:hover {
+    color: rgba(17, 17, 17, 0.8);
+  }
+}
+
+@keyframes logoIn {
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes textIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
