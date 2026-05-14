@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import styles from "./IntroCategorySection.module.scss";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -94,39 +94,29 @@ const categories: CategoryItem[] = [
 ];
 
 // ─── Image Transition Variants ────────────────────────────────────────────────
-const imgVariants = {
-  hidden: { opacity: 0, y: 14, scale: 0.97 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] as const },
-  },
-  exit: {
+const imgVariants: Variants = {
+  hidden: {
     opacity: 0,
-    y: -10,
-    scale: 0.97,
-    transition: { duration: 0.35, ease: "easeIn" },
+    y: 18,
+    scale: 0.98,
   },
-};
-
-const imgVariantsRight = {
-  hidden: { opacity: 0, y: -14, scale: 0.97 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
-      duration: 0.55,
-      ease: [0.25, 0.1, 0.25, 1] as const,
-      delay: 0.06,
+      duration: 0.75,
+      ease: [0.25, 0.1, 0.25, 1],
     },
   },
   exit: {
     opacity: 0,
-    y: 10,
-    scale: 0.97,
-    transition: { duration: 0.35, ease: "easeIn" },
+    y: -18,
+    scale: 0.98,
+    transition: {
+      duration: 0.45,
+      ease: "easeOut",
+    },
   },
 };
 
@@ -234,7 +224,7 @@ export default function IntroCategorySection() {
             <motion.div
               key={`right-${activeIndex}`}
               className={styles.imageWrapRight}
-              variants={imgVariantsRight}
+              variants={imgVariants}
               initial="hidden"
               animate="visible"
               exit="exit"

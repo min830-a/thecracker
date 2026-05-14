@@ -4,9 +4,7 @@ import { useRef } from "react";
 import { motion, useInView, type Variants } from "framer-motion";
 import styles from "./Contact.module.scss";
 
-// ─── Animation Variants ───────────────────────────────────────────────────────
-
-const stagger = {
+const stagger: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -17,12 +15,13 @@ const stagger = {
 };
 
 const itemFade: Variants = {
-  hidden: { opacity: 0, y: 28 },
-
+  hidden: {
+    opacity: 0,
+    y: 28,
+  },
   visible: {
     opacity: 1,
     y: 0,
-
     transition: {
       duration: 0.75,
       ease: "easeOut",
@@ -30,10 +29,8 @@ const itemFade: Variants = {
   },
 };
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 export default function Contact() {
-  const ref = useRef(null);
+  const ref = useRef<HTMLElement | null>(null);
 
   const inView = useInView(ref, {
     once: true,
@@ -41,37 +38,31 @@ export default function Contact() {
   });
 
   return (
-    <section id="contact" className={styles.contact}>
+    <section id="contact" className={styles.contact} ref={ref}>
       <motion.div
-        ref={ref}
         className={styles.inner}
         variants={stagger}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        {/* Label */}
         <motion.span className={styles.sectionLabel} variants={itemFade}>
           Contact
         </motion.span>
 
-        {/* Title */}
         <motion.h2 className={styles.title} variants={itemFade}>
           Let&apos;s Build
           <br />
           Solid Results
         </motion.h2>
 
-        {/* Divider */}
         <motion.div className={styles.divider} variants={itemFade} />
 
-        {/* Description */}
         <motion.p className={styles.description} variants={itemFade}>
           프로젝트에 대한 아이디어가 있다면
           <br />
           TheCracker와 함께 구체적인 결과로 만들어보세요.
         </motion.p>
 
-        {/* Email */}
         <motion.a
           href="mailto:contact@thecracker.co.kr"
           className={styles.email}
@@ -82,7 +73,6 @@ export default function Contact() {
           contact@thecracker.co.kr
         </motion.a>
 
-        {/* CTA Button */}
         <motion.div variants={itemFade}>
           <motion.a
             href="mailto:contact@thecracker.co.kr"
