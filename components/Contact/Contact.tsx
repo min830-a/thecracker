@@ -1,19 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, type Variants } from "framer-motion";
 import styles from "./Contact.module.scss";
 
 // ─── Animation Variants ───────────────────────────────────────────────────────
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.85, ease: [0.25, 0.1, 0.25, 1] },
-  },
-};
 
 const stagger = {
   hidden: {},
@@ -25,12 +16,17 @@ const stagger = {
   },
 };
 
-const itemFade = {
+const itemFade: Variants = {
   hidden: { opacity: 0, y: 28 },
+
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75, ease: [0.25, 0.1, 0.25, 1] },
+
+    transition: {
+      duration: 0.75,
+      ease: "easeOut",
+    },
   },
 };
 
@@ -38,7 +34,11 @@ const itemFade = {
 
 export default function Contact() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+
+  const inView = useInView(ref, {
+    once: true,
+    margin: "-80px",
+  });
 
   return (
     <section id="contact" className={styles.contact}>
@@ -56,7 +56,7 @@ export default function Contact() {
 
         {/* Title */}
         <motion.h2 className={styles.title} variants={itemFade}>
-          Let's Build
+          Let&apos;s Build
           <br />
           Solid Results
         </motion.h2>
@@ -87,9 +87,15 @@ export default function Contact() {
           <motion.a
             href="mailto:contact@thecracker.co.kr"
             className={styles.ctaButton}
-            whileHover={{ scale: 1.03, opacity: 0.88 }}
+            whileHover={{
+              scale: 1.03,
+              opacity: 0.88,
+            }}
             whileTap={{ scale: 0.98 }}
-            transition={{ duration: 0.22, ease: "easeOut" }}
+            transition={{
+              duration: 0.22,
+              ease: "easeOut",
+            }}
           >
             Contact Us
           </motion.a>

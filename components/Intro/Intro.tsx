@@ -4,17 +4,21 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "./Intro.module.scss";
 
+interface IntroProps {
+  onComplete: () => void;
+}
+
 export default function Intro({ onComplete }: IntroProps) {
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     const closeTimer = setTimeout(() => {
       setIsClosing(true);
-    }, 3800);
+    }, 2400);
 
     const completeTimer = setTimeout(() => {
       onComplete();
-    }, 2400);
+    }, 3200);
 
     return () => {
       clearTimeout(closeTimer);
